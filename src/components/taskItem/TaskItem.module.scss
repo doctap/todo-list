@@ -1,0 +1,27 @@
+.task {
+	min-height: 5rem;
+	min-width: fit-content;
+	border: 2px solid black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1rem;
+
+	.StatusTaskCheckbox {
+		display: flex;
+		height: 100%;
+		width: 8rem;
+		justify-content: space-between;
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		padding: 0 1rem;
+
+		.textTask {
+			width: 100%;
+		}
+	}
+}

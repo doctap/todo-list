@@ -1,0 +1,11 @@
+.taskMaker {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.form {
+		max-width: 15rem;
+		display: flex;
+		flex-direction: column;
+	}
+}

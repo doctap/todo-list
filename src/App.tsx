@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.scss';
+import ListTaskItem from './components/listTaskItem/ListTaskItem';
+import { ITaskItem } from './components/taskItem/TaskItem';
+import TaskMaker from './components/taskMaker/TaskMaker';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className={styles.App}>
+
+			<div>
+			<TaskMaker />
+			</div>
+
+			<div className={styles.ListTaskItem}>
+				<ListTaskItem items={TODOS} />
+			</div>
+		</div>
+	);
 }
 
 export default App;
+
+const TODOS: ITaskItem[] = [
+	{
+		id: '1',
+		person: 'Кирил Валерьевич',
+		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
+	},
+	{
+		id: '1',
+		person: 'Кирил Валерьевич',
+		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
+	},
+	{
+		id: '1',
+		person: 'Кирил Валерьевич',
+		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
+	},
+
+];
