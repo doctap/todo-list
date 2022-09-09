@@ -10,6 +10,7 @@ export default function Submit(props: ISubmit) {
 	return (
 		<button
 			name={props.name}
+			type='submit'
 			onClick={props.onClick}
 			className={styles.submit}
 			children={props.name}

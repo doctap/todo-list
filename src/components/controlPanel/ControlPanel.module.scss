@@ -1,0 +1,10 @@
+.controlPanel {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 40%;
+	
+	.TaskMaker {
+		margin-bottom: 1.5rem;
+	}
+}

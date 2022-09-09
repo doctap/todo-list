@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
 import styles from './App.module.scss';
 import ListTaskItem from './components/listTaskItem/ListTaskItem';
-import { ITaskItem } from './components/taskItem/TaskItem';
-import TaskMaker from './components/taskMaker/TaskMaker';
+import ControlPanel from './components/controlPanel/ControlPanel';
+import todo, { arrToDos } from './store/todo';
 
 function App() {
 
-	const [arrToDos, setArrToDos] = useState(TODOS);
+	const [selectedSort, setSelectedSort] = useState('');
 
-	const requestAddTask = (task: ITaskItem) => {
-		setArrToDos([...TODOS, task]);
-		TODOS.push(task);
-	};
-
-	const requestChangeStatus = (taskID: string) => {
-		const foundTask: ITaskItem = TODOS.find(t => t.id === taskID) ?? { id: '', isCompleted: false, person: '', textTask: '' };
-		foundTask.isCompleted = !foundTask.isCompleted;
-	};
-
-	const requestDeleteTask = (taskID: string) => {
-
+	const sortTasks = (sort: string) => {
+		setSelectedSort(sort);
+		if (sort === 'completed') todo.sortToDos([...arrToDos].filter(t => t.isCompleted === true), sort);
+		if (sort === 'unimplemented') todo.sortToDos([...arrToDos].filter(t => t.isCompleted === false), sort);
+		if (sort === 'allTasks') todo.sortToDos([...arrToDos], sort);
 	};
 
 	return (
 		<div className={styles.App}>
 			<div className={styles.TaskMaker}>
-				<TaskMaker getTask={requestAddTask} />
+				<ControlPanel
+					sortValue={selectedSort}
+					onChange={sortTasks}
+				/>
 			</div>
 
 			<div className={styles.ListTaskItem}>
-				<ListTaskItem changeStatus={requestChangeStatus} items={arrToDos} />
+				<ListTaskItem />
 			</div>
 		</div>
 	);
@@ -37,24 +33,3 @@ function App() {
 
 export default App;
 
-const TODOS: ITaskItem[] = [
-	{
-		id: '1',
-		isCompleted: false,
-		person: 'Кирил Валерьевич',
-		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
-	},
-	{
-		id: '2',
-		isCompleted: false,
-		person: 'Генадий Викторович',
-		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
-	},
-	{
-		id: '3',
-		isCompleted: false,
-		person: 'Анна Дмитриевна',
-		textTask: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta repudiandae voluptas, sunt qui omnis nam voluptatum accusantium! Amet quibusdam saepe repudiandae error suscipit quaerat neque. Sapiente consectetur repellendus odio doloribus!',
-	},
-
-];

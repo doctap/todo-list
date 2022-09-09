@@ -1,5 +1,12 @@
 .submit {
 	width: 100%;
 	padding: .2rem;
-	white-space: nowrap;
+	box-shadow: 0 0 5px 1px #8E41D5;
+	border-radius: 4px;
+	border: .09rem solid #274E7D;
+	background: #fff;
+
+	&:hover {
+		box-shadow: 0 0 6px 2px #6e33a5;
+	}
 }

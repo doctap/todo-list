@@ -1,26 +1,25 @@
 import React from 'react';
-import TaskItem, { ITaskItem } from '../taskItem/TaskItem';
+import { observer } from 'mobx-react-lite';
+import TaskItem from '../taskItem/TaskItem';
+import todo from '../../store/todo';
 import styles from './ListTaskItem.module.scss';
 
-interface IListTaskItem {
-	changeStatus: (taskID: string) => void;
-	items: ITaskItem[];
-}
-
-export default function ListTaskItem(props: IListTaskItem) {
-
+function ListTaskItem() {
 	return (
 		<div className={styles.listTaskItems}>
-			{props.items.map(it =>
+			{todo.toDos.map(t =>
 				<TaskItem
-					key={it.id}
-					id={it.id}
-					person={it.person}
-					textTask={it.textTask}
-					isCompleted={it.isCompleted}
-					changeStatus={props.changeStatus}
+					key={t.id}
+					id={t.id}
+					person={t.person}
+					textTask={t.textTask}
+					isCompleted={t.isCompleted}
+					changeStatus={(ID) => todo.completedToDo(ID)}
+					deleteTask={(ID) => todo.removeToDo(ID)}
 				/>
 			)}
 		</div>
 	)
-}
+};
+
+export default observer(ListTaskItem);

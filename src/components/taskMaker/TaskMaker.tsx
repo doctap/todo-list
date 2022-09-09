@@ -17,7 +17,7 @@ export default function TaskMaker(props: ITaskMaker) {
 	const sendData = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		if (nameWorker && description) {
-			props.getTask({id: uniqID() , person: nameWorker, textTask: description, isCompleted: false });
+			props.getTask({ id: uniqID(), person: nameWorker, textTask: description, isCompleted: false });
 			setNameWorker('');
 			setDescription('');
 		}
@@ -35,7 +35,7 @@ export default function TaskMaker(props: ITaskMaker) {
 			</div>
 
 			<div className={styles.Submit}>
-				<Submit name='Создать задачу' onClick={sendData} />
+				<Submit name='Добавить' onClick={sendData} />
 			</div>
 		</form>
 	)

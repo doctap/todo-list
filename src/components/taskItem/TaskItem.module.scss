@@ -1,27 +1,44 @@
 .task {
-	min-height: 5rem;
 	min-width: fit-content;
-	border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 1px #04346C;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 1rem;
+	padding: 1rem 0;
 
 	.StatusTaskCheckbox {
 		display: flex;
-		height: 100%;
-		width: 8rem;
-		justify-content: space-between;
+		width: 5rem;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.body {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		padding: 0 1rem;
+		cursor: pointer;
+
+		.person {
+			font-weight: 600;
+			font-style: italic;
+		}
 
 		.textTask {
-			width: 100%;
+			min-width: 100%;
+			max-width: 0;
+
+			&_textDecoration {
+				text-decoration: line-through solid #562781;
+			}
 		}
+	}
+
+	.IconButton {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 5rem;
 	}
 }
