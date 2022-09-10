@@ -51,33 +51,32 @@ export class Todo {
 	}
 
 	addToDo(toDo: ITaskItem) {
-		console.log('addToDo')
 		arrToDos.push(toDo)
 		if (this.sortValue === 'allTasks') {
 			this.toDos.push(toDo)
+		} else if (this.sortValue === 'unimplemented') {
+			this.toDos.push(toDo)
 		}
-		console.log(arrToDos)
 	}
 
 	removeToDo(taskID: string) {
-		console.log('removeToDo')
-		this.toDos = this.toDos.filter(t => t.id !== taskID)
-		arrToDos = [...toJS(this.toDos)]
-		console.log(arrToDos)
+		if (this.sortValue !== 'allTasks') {
+			this.toDos = this.toDos.filter(t => t.id !== taskID)
+			arrToDos = arrToDos.filter(t => t.id !== taskID)
+		} else {
+			this.toDos = this.toDos.filter(t => t.id !== taskID)
+			arrToDos = [...toJS(this.toDos)]
+		}
 	}
 
 	completedToDo(taskID: string) {
-		console.log('completedToDo')
 		this.toDos = this.toDos.map(t => t.id === taskID ? { ...t, isCompleted: !t.isCompleted } : t)
 		arrToDos = [...toJS(this.toDos)]
-		console.log(arrToDos)
 	}
 
 	sortToDos(sort: ITaskItem[], sortValue: string) {
 		this.toDos = sort
 		this.getSortValue(sortValue)
-		console.log([...toJS(this.toDos)])
-		console.log(arrToDos)
 	}
 
 	getSortValue(sortValue: string) {
