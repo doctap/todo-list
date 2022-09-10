@@ -23,7 +23,6 @@ function App() {
 					onChange={sortTasks}
 				/>
 			</div>
-
 			<div className={styles.ListTaskItem}>
 				<ListTaskItem />
 			</div>
