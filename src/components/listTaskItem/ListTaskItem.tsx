@@ -1,25 +1,33 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import TaskItem from '../taskItem/TaskItem';
-import todo from '../../store/todo';
+import TaskItem, { ITaskItem } from '../taskItem/TaskItem';
 import styles from './ListTaskItem.module.scss';
 
-function ListTaskItem() {
+interface IListTaskItem {
+	items: () => ITaskItem[];
+	changeStatus: (id: string) => void;
+	deleteTask: (id: string) => void;
+}
+
+export default observer((props: IListTaskItem) => {
 	return (
 		<div className={styles.listTaskItems}>
-			{todo.toDos.map(t =>
-				<TaskItem
-					key={t.id}
-					id={t.id}
-					person={t.person}
-					textTask={t.textTask}
-					isCompleted={t.isCompleted}
-					changeStatus={(ID) => todo.completedToDo(ID)}
-					deleteTask={(ID) => todo.removeToDo(ID)}
-				/>
-			)}
+			{
+				props.items().length !== 0
+					?
+					props.items().map(t =>
+						<TaskItem
+							key={t.id}
+							id={t.id}
+							person={t.person}
+							textTask={t.textTask}
+							isCompleted={t.isCompleted}
+							changeStatus={(id) => props.changeStatus(id)}
+							deleteTask={(id) => props.deleteTask(id)}
+						/>)
+					:
+					<h1>Задачи не найдены!</h1>
+			}
 		</div>
 	)
-};
-
-export default observer(ListTaskItem);
+});

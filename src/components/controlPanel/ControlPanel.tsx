@@ -1,6 +1,6 @@
 import React from 'react';
-import todo, { optionsForSelectSort } from '../../store/todo';
-import SelectOpt from '../selectOpt/SelectOpt';
+import todo from '../../store/todo';
+import SelectOpt, { IOptions } from '../selectOpt/SelectOpt';
 import TaskMaker from '../taskMaker/TaskMaker';
 import styles from './ControlPanel.module.scss';
 
@@ -23,4 +23,19 @@ export default function ControlPanel(props: IControlPanel) {
 			/>
 		</div>
 	)
-}
+};
+
+const optionsForSelectSort: IOptions[] = [
+	{
+		name: 'Все задачи',
+		value: 'allTasks',
+	},
+	{
+		name: 'Выполненные',
+		value: 'completed',
+	},
+	{
+		name: 'Невыполненные',
+		value: 'unimplemented',
+	},
+];

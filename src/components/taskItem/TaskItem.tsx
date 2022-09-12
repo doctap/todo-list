@@ -8,8 +8,8 @@ export interface ITaskItem {
 	isCompleted: boolean;
 	textTask: string;
 	person: string;
-	changeStatus?: (taskID: string) => void;
-	deleteTask?: (taskID: string) => void;
+	changeStatus?: (taskId: string) => void;
+	deleteTask?: (taskId: string) => void;
 }
 
 export default function TaskItem(props: ITaskItem) {

@@ -2,29 +2,33 @@ import React, { useState } from 'react';
 import styles from './App.module.scss';
 import ListTaskItem from './components/listTaskItem/ListTaskItem';
 import ControlPanel from './components/controlPanel/ControlPanel';
-import todo, { arrToDos } from './store/todo';
+import todo, { Todo } from './store/todo';
 
 function App() {
+	const [selectedSort, setSelectedSort] = useState('allTasks');
+	const allTasks = (toDoS: Todo) => <ListTaskItem items={() => toDoS.toDos} changeStatus={(id) => toDoS.changeStatusToDo(id)} deleteTask={(id) => toDoS.removeToDo(id)} />;
 
-	const [selectedSort, setSelectedSort] = useState('');
-
-	const sortTasks = (sort: string) => {
-		setSelectedSort(sort);
-		if (sort === 'completed') todo.sortToDos([...arrToDos].filter(t => t.isCompleted === true), sort);
-		if (sort === 'unimplemented') todo.sortToDos([...arrToDos].filter(t => t.isCompleted === false), sort);
-		if (sort === 'allTasks') todo.sortToDos([...arrToDos], sort);
+	const getListTasks = (selectVariant: string) => {
+		switch (selectVariant) {
+			case 'allTasks': return allTasks(todo);
+			case 'completed': return <ListTaskItem items={() => todo.toDos.filter(t => t.isCompleted)} changeStatus={(id) => todo.changeStatusToDo(id)} deleteTask={(id) => todo.removeToDo(id)} />;
+			case 'unimplemented': return <ListTaskItem items={() => todo.toDos.filter(t => !t.isCompleted)} changeStatus={(id) => todo.changeStatusToDo(id)} deleteTask={(id) => todo.removeToDo(id)} />;
+			default: return allTasks(todo);
+		}
 	};
-
+	
 	return (
 		<div className={styles.App}>
 			<div className={styles.TaskMaker}>
 				<ControlPanel
 					sortValue={selectedSort}
-					onChange={sortTasks}
+					onChange={(sort) => setSelectedSort(sort)}
 				/>
 			</div>
 			<div className={styles.ListTaskItem}>
-				<ListTaskItem />
+				{
+					getListTasks(selectedSort)
+				}
 			</div>
 		</div>
 	);

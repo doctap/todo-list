@@ -2,7 +2,9 @@
 	"name": "todo-list",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://doctap.github.io/todo-list",
 	"dependencies": {
+		"gh-pages": "^4.0.0",
 		"mobx": "^6.6.1",
 		"mobx-react-lite": "^3.4.0",
 		"normalize.css": "^8.0.1",
@@ -13,6 +15,8 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
