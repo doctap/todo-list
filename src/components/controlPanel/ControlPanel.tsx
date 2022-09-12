@@ -13,14 +13,16 @@ export default function ControlPanel(props: IControlPanel) {
 	return (
 		<div className={styles.controlPanel}>
 			<div className={styles.TaskMaker}>
-			<TaskMaker getTask={(task) => todo.addToDo(task)} />
+				<TaskMaker getTask={(task) => todo.addToDo(task)} />
 			</div>
-			<SelectOpt
-				onChange={(sort) => props.onChange(sort)}
-				options={optionsForSelectSort}
-				value={props.sortValue}
-				defaultValue='Сортировка'
-			/>
+			<div className={styles.SelectOpt}>
+				<SelectOpt
+					onChange={(sort) => props.onChange(sort)}
+					options={optionsForSelectSort}
+					value={props.sortValue}
+					defaultValue='Сортировка'
+				/>
+			</div>
 		</div>
 	)
 };

@@ -1,0 +1,10 @@
+.wrapperTextarea {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.textArea {
+		resize: none;
+		height: 100%;
+	}
+}

@@ -4,6 +4,7 @@ import TextField from '../inputs/textField/TextField';
 import { ITaskItem } from '../taskItem/TaskItem';
 import styles from './TaskMaker.module.scss';
 import uniqID from 'uniqid';
+import TextArea from '../inputs/TextArea/TextArea';
 
 interface ITaskMaker {
 	getTask: (task: ITaskItem) => void;
@@ -25,15 +26,14 @@ export default function TaskMaker(props: ITaskMaker) {
 
 	return (
 		<form className={styles.taskMaker}>
-			<div className={styles.form}>
-				<div>
+			<div className={styles.inputs}>
+				<div className={styles.TextField}>
 					<TextField label='Имя работника' value={nameWorker} onChange={(e) => setNameWorker(e.currentTarget.value)} />
 				</div>
-				<div>
-					<TextField label='Описание задачи' value={description} onChange={(e) => setDescription(e.currentTarget.value)} />
+				<div className={styles.TextArea}>
+					<TextArea label='Описание задачи' value={description} onChange={(e) => setDescription(e.currentTarget.value)} />
 				</div>
 			</div>
-
 			<div className={styles.Submit}>
 				<Submit name='Добавить' onClick={sendData} />
 			</div>

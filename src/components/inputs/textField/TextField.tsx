@@ -1,4 +1,5 @@
 import React from 'react';
+import Label from '../../label/Label';
 import styles from './TextField.module.scss';
 
 interface ITextField {
@@ -10,9 +11,7 @@ interface ITextField {
 export default function TextField(props: ITextField) {
 	return (
 		<label className={styles.inputContainer}>
-			<span className={styles.inputLabel}>
-				{props.label}
-			</span>
+			<Label text={props.label} />
 			<input
 				type="text"
 				value={props.value}

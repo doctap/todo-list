@@ -1,5 +1,5 @@
 .taskMaker {
-	// width: 100%;
+	height: 100%;
 	padding: .5rem 1rem 1rem 1rem;
 	display: flex;
 	flex-direction: column;
@@ -8,17 +8,21 @@
 	border-radius: 7px 7px 0 0;
 	box-shadow: 0 0 4px 2px #04356c8f;
 
-	.form {
+	.inputs {
+		height: 100%;
 		width: 65%;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		height: 5.5rem;
 		margin-bottom: 1.5rem;
 
-
-		&>* {
+		.TextField {
 			width: 100%;
+
+		}
+
+		.TextArea {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
